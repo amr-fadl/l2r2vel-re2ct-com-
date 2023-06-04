@@ -22,17 +22,24 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
 
-        // if ($request->page) {
-        //     $category = Category::latest()->paginate(10,['*'],'page',$request->page);
-        //     $category->image = $this->createImageUrl($category->image);
+        if ($request->page) {
+            $categories = Category::latest()->paginate(9,['*'],'page',$request->page);
+            $categories->load('parent', 'child');
 
-        //     return Category::latest()->paginate(10,['*'],'page',$request->page);
-        // }
+            foreach ($categories as $category) {
+                $category->image = $this->createImageUrl($category->image,'category');
+            }
+
+            return $categories;
+        }
 
         $categories = Category::all();
+        $categories->load('parent', 'child');
+
         foreach ($categories as $category) {
             $category->image = $this->createImageUrl($category->image,'category');
         }
+
         return $categories;
     }
 
@@ -66,6 +73,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $category->image = $this->createImageUrl($category->image,'category');
+        $category->load('parent', 'child');
         return $category;
     }
 
@@ -87,6 +95,7 @@ class CategoryController extends Controller
             $request_data['image'] = $this->updateFile($request->file('image'),$category->image,'category');
         }
 
+        // return $request_data;
 
         $category->update($request_data);
 

@@ -1,10 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import AdminSideBar from '../../Components/Admin/AdminSideBar'
-import AdminAllProducts from '../../Components/Admin/AdminAllProducts'
-import Pagination from '../../Components/Uitily/Pagination'
-import AdminOrderDetalis from '../../Components/Admin/AdminOrderDetalis'
-import AdminAddCategory from '../../Components/Admin/AdminAddCategory'
+import AdminSideBar from '../../Components/Admin/sidebar/AdminSideBar'
+import AdminAddCategory from '../../Components/Admin/category/AdminAddCategory'
 const AdminAddCategoryPage = () => {
     return (
         <Container >

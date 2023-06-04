@@ -18,8 +18,6 @@ const AdminAllProductsCard = ({product}) => {
         window.location.reload()
     };
 
-    console.log(product);
-
     return (
         <Col xs="12" sm="6" md="5" lg="4" className="d-flex">
             <Modal show={show} onHide={handleClose}>

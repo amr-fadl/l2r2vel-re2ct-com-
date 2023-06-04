@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import AdminSideBar from '../../Components/Admin/AdminSideBar'
+import AdminSideBar from '../../Components/Admin/sidebar/AdminSideBar'
 import AdminAddProducts from '../../Components/Admin/AdminAddProducts'
 const AdminAddProductsPage = () => {
     return (

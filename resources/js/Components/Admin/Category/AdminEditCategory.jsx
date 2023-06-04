@@ -1,27 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Col, Row, Spinner } from 'react-bootstrap'
-import AddCategoryHook from '../../hook/category/add-category-hook'
+import EditCategoryHook from '../../../hook/category/edit-category-hook'
 import { ToastContainer } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory } from '../../redux/actions/categoryAction';
-const AdminAddCategory = () => {
 
-    const [img,name,loading,isPress,handelSubmit,onImageChange,onChangeName,onChangeParentCatId] = AddCategoryHook();
+const AdminEditCategory = () => {
 
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(getAllCategory())
-    },[!loading])
-
-    const category = useSelector(state => state.allCategory.category)
-
-    if(category)
-    console.log(category?.data);
+    const [img,name,selectedFile,loading,isPress,handelSubmit,onImageChange, onChangeName, onChangeParentCatId,category] = EditCategoryHook();
 
     return (
         <div>
-            <Row className="justify-content-start ">
+            <Row className="justify-content-start">
                 <div className="admin-content-text pb-4">اضافه تصنيف جديد</div>
                 <Col sm="8">
                     <div className="text-form pb-2">صوره التصنيف</div>
@@ -52,14 +40,13 @@ const AdminAddCategory = () => {
                         placeholder="اسم التصنيف"
                     />
 
-                    <select name="parent_cat_id" onChange={onChangeParentCatId} className="select mt-3 px-2 ">
-                        <option value="val">اختر تصنيف إذا كان تصنيف فرعي (اختياري)</option>
-                        {
-                            !category?.data?.message?
-                                category?.data?.map(item => <option key={item.id} value={item.id}>{item.name}</option>)
-                            : null
-                        }
-                    </select>
+                    {category&&category.data&&category.data.length > 0 ?
+                        <select name="parent_cat_id" onChange={onChangeParentCatId} className="select mt-3 px-2" value={selectedFile}>
+                            <option value="val">اختر تصنيف إذا كان تصنيف فرعي (اختياري)</option>
+                            {category.data.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+                        </select>
+                    : null}
+
                 </Col>
                 <Col sm="8" className="d-flex justify-content-end ">
                     <button onClick={handelSubmit} className="btn-save d-inline mt-2 ">حفظ التعديلات</button>
@@ -73,4 +60,4 @@ const AdminAddCategory = () => {
     )
 }
 
-export default AdminAddCategory
+export default AdminEditCategory

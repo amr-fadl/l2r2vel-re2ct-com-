@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import AdminSideBar from '../../Components/Admin/sidebar/AdminSideBar'
-import AdminEditProduct from '../../Components/Admin/AdminEditProduct'
-const AdminEditProductPage = () => {
+import AdminSideBar from '../../../Components/Admin/sidebar/AdminSideBar'
+import AdminAllCategory from '../../../Components/Admin/category/AdminAllCategory'
+const AdminAllCategoryPage = () => {
     return (
         <Container >
             <Row className='py-3'>
@@ -11,11 +11,11 @@ const AdminEditProductPage = () => {
                 </Col>
 
                 <Col sm="9" xs="10" md="10">
-                     <AdminEditProduct />
+                    <AdminAllCategory />
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default AdminEditProductPage
+export default AdminAllCategoryPage

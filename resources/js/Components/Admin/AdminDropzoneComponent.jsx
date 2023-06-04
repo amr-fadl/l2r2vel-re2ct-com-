@@ -45,7 +45,7 @@ const DropzoneComponent = ({ setImages,images,changeImages }) => {
                 filesRef.current.length > 0 ? filesRef.current.map(({ file, id }) =>
                     <div key={id} style={{ position: 'relative'}}>
                         <img
-                            src={URL.createObjectURL(file)}
+                            src={file.path ? URL.createObjectURL(file) : file}
                             alt={file.name}
                             style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                         />

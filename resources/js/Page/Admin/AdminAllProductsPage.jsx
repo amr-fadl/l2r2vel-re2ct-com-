@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import AdminSideBar from '../../Components/Admin/AdminSideBar'
+import AdminSideBar from '../../Components/Admin/sidebar/AdminSideBar'
 import AdminAllProducts from '../../Components/Admin/AdminAllProducts'
 import Pagination from '../../Components/Uitily/Pagination'
 import viewProductAdminHook from '../../hook/admin/view-product-admin-hook'

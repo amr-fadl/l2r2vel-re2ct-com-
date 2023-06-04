@@ -31,7 +31,7 @@ const viewSearchProductHook = () => {
         getProduct()
    },[])
 
-   const products = useSelector(state => state.allProduct.allProduct)
+   const products = useSelector(state => state.allProduct.allProductSearch)
    const loading = useSelector(state => state.allProduct.loading)
 
     const getDataViaPaginate = (num=1) => {

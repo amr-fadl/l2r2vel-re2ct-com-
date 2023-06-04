@@ -3,6 +3,9 @@ body {
     font-family: "Almarai", sans-serif;
     direction: rtl;
 }
+li{
+    list-style: none;
+}
 nav a{
     text-decoration: none;
 }
@@ -495,12 +498,18 @@ nav a{
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding: 0 8px;
+    transition: all ease-in-out 0.2s;
 }
 
 .admin-side-text:hover {
-    background-color: #272727;
+    background-color: #979797d1;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
 }
 .admin-content-text {
     margin: 2rem 0;
@@ -520,6 +529,33 @@ nav a{
     line-height: 30px;
     text-align: right;
     cursor: pointer;
+}
+/* admin sidebar dropdown  */
+.list-menu{
+    cursor: pointer;
+    text-align: center;
+}
+.list-menu .child-list-menu{
+    position: relative;
+    transform: scaleY(0);
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out , transform  0.2s ease-in-out 0.1s;
+
+}
+.list-menu.active .child-list-menu{
+    transform: scaleY(1);
+    max-height: 400px;
+}
+
+.list-menu.active > .admin-side-text, .list-menu.active > a > .admin-side-text {
+    background-color: #979797d1;
+    color: white;
+}
+
+.list-menu .title-list-menu{
+    cursor: pointer;
+    text-align: center;
 }
 
 .text-form {

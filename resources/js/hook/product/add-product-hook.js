@@ -16,6 +16,7 @@ function addProductHook() {
     const [price,setPrice] = useState('');
     const [discount,setDiscount] = useState('');
     const [qty,setQty] = useState('');
+    const [allCat,setAllCat] = useState([]);
     const [cat,setCat] = useState();
     const [subCat,setSubCat] = useState([]);
     const [subCatOption,setSubCatOption] = useState([]);
@@ -36,7 +37,7 @@ function addProductHook() {
     // select category
     const onChangeCat = (e) => {
         setCat(e.target.value) // set category
-        setSubCatOption(category?.data?.filter(cat => cat.parent_cat_id == e.target.value)) // set sub category
+        setSubCatOption(category?.data?.filter(cat => cat.parent?.id == e.target.value)) // set sub category
     }
 
     // multi select
@@ -69,17 +70,16 @@ function addProductHook() {
         formData.append('price',price)
         formData.append('discount',discount)
         formData.append('qty',qty)
-        formData.append('category',cat)
         formData.append('brand',brandId)
 
+        // all categories
+        formData.append('category[]',cat)
+        subCat.forEach(e => {
+            formData.append(`category[]`, e.id);
+        });
 
         images.forEach(e => {
             formData.append(`images[]`, e);
-        });
-        console.log(images);
-
-        subCat.forEach(e => {
-            formData.append(`sub_cat[]`, e.id);
         });
 
         colors.forEach(e => {
@@ -90,6 +90,7 @@ function addProductHook() {
         notify("تم إضافة المنتج بنجاح", "success");
 
     }
+
 
     // validation
     const [errors, setErrors] = useState({});

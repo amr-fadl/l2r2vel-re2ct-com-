@@ -1,8 +1,10 @@
-import { CREATE_PRODUCT,UPDATE_PRODUCT,GET_ERROR,GET_ALL_PRODUCT,GET_ALL_PRODUCT_MORE_SALES,GET_ALL_PRODUCT_LATEST, GET_PRODUCT_DETALIS,PRODUCT_DELETE,GET_ALL_PRODUCT_LIKE } from "../type";
+import { CREATE_PRODUCT,UPDATE_PRODUCT,GET_ERROR,GET_ALL_PRODUCT,GET_ALL_PRODUCT_MORE_SALES,GET_ALL_PRODUCT_LATEST,
+         GET_PRODUCT_DETALIS,PRODUCT_DELETE,GET_ALL_PRODUCT_LIKE,GET_ALL_PRODUCT_SEARCH } from "../type";
 
 const initail = {
     product: [],
     allProduct: [],
+    allProductSearch: [],
     allProductMoreSales: [],
     allProductLatest: [],
     allProductLike: [],
@@ -18,6 +20,12 @@ const productReducer = (state=initail,action) => {
             return {
                 ...state,
                 allProduct: action.payload,
+                loading: false
+            }
+        case GET_ALL_PRODUCT_SEARCH:
+            return {
+                ...state,
+                allProductSearch: action.payload,
                 loading: false
             }
         case GET_ALL_PRODUCT_MORE_SALES:

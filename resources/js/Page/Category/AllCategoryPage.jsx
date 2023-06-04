@@ -6,6 +6,7 @@ import AllCategoryPageHook from '../../hook/category/all-category-page-hook'
 const AllCategoryPage = () => {
 
     const [category,loading,getDataViaPaginate] = AllCategoryPageHook();
+
     return (
         <div style={{minHeight:'670px'}}>
             <CategoryContainer data={category.data} loading={loading}/>

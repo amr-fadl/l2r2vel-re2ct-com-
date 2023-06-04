@@ -50,12 +50,10 @@ const AddBrandHook = () => {
             setImg(avatar)
             setName("")
             setSelectedFile(null)
-            console.log('تم الانتهاء')
-            console.log(res)
             setLoading(true)
             setTimeout(() => setIsPress(false), 1000)
 
-            if (res.status === 201||res.status === 200) {
+            if (res.status === 201||res.status === 200||res.statusText == 'OK') {
                 notify('تمت عملية الاضافة بنجاح', "success");
             }
             else {

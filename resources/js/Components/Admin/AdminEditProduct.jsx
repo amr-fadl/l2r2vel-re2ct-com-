@@ -24,6 +24,8 @@ const AdminEditProduct = () => {
         validate,selectedValues,
     ] = adminEditProductHook();
 
+    console.log(colors);
+
     return (
         <div>
             <Row className="justify-content-start ">
@@ -112,7 +114,7 @@ const AdminEditProduct = () => {
                         <p className="text-danger mb-0">{errors.qty}</p>
                     )}
 
-                    <select
+                    {/* <select
                         value={cat}
                         onChange={(e) => {
                             onChangeCat(e)
@@ -140,7 +142,7 @@ const AdminEditProduct = () => {
                         displayValue="name"
                         selectedValues={selectedValues}
                         style={{ color: "red" }}
-                    />}
+                    />} */}
                     {/* {errors.subCat && (
                         <p className="text-danger mb-0">{errors.subCat}</p>
                     )} */}
@@ -171,7 +173,7 @@ const AdminEditProduct = () => {
                             type="hidden"
                         />
 
-                        {
+                        {/* {
                             colors.length > 0 ? colors?.map((color,index) =>
                                 <div
                                     onClick={() => removeColor(color)}
@@ -180,7 +182,7 @@ const AdminEditProduct = () => {
                                     style={{ backgroundColor: color }}
                                 ></div>
                             ): null
-                        }
+                        } */}
 
                         <img onClick={() => setShowColor(!showColor)} src={add} alt="" width="30px" height="35px" className="" style={{cursor: 'pointer'}}/>
                         {showColor ? <div style={{position:'absolute',right:'0',top: '115%'}}><CompactPicker onChangeComplete={colorChange} /></div> : null}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row,Col, Spinner } from 'react-bootstrap'
-import AddBrandHook from '../../hook/brand/add-brand-hook'
+import AddBrandHook from '../../../hook/brand/add-brand-hook'
 import { ToastContainer } from 'react-toastify'
 const AdminAddBrand = () => {
 

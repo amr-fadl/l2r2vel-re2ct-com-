@@ -1,4 +1,4 @@
-import { GET_ALL_BRAND,GET_ERROR,CREATE_CATEGORY } from "../type";
+import { GET_ALL_BRAND,GET_ERROR,CREATE_BRAND } from "../type";
 import useGetData from './../../hooks/useGetData';
 import { useInsertDataWithImage } from "../../hooks/useInsertData";
 
@@ -36,8 +36,8 @@ export const createBrand = (formData) => async (dispatch) => {
     try {
         const response = await useInsertDataWithImage('/api/brand',formData)
         dispatch({
-            type: GET_ALL_BRAND,
-            payload: response.data,
+            type: CREATE_BRAND,
+            payload: response,
             loading: true
         })
     } catch (error) {

@@ -1,7 +1,10 @@
 import useGetData from "../../hooks/useGetData";
 import { useInsertDataWithImage } from "../../hooks/useInsertData";
 import { useUpdateDataWithImage } from "../../hooks/useUpdateData";
-import { CREATE_PRODUCT,UPDATE_PRODUCT,PRODUCT_DELETE,GET_ERROR,GET_PRODUCT_DETALIS,GET_ALL_PRODUCT,GET_ALL_PRODUCT_MORE_SALES,GET_ALL_PRODUCT_LATEST,GET_ALL_PRODUCT_LIKE } from "../type";
+import { CREATE_PRODUCT,UPDATE_PRODUCT,PRODUCT_DELETE,
+    GET_ERROR,GET_PRODUCT_DETALIS,GET_ALL_PRODUCT,
+    GET_ALL_PRODUCT_MORE_SALES,GET_ALL_PRODUCT_LATEST,
+    GET_ALL_PRODUCT_LIKE,GET_ALL_PRODUCT_SEARCH } from "../type";
 import useDeleteData from './../../hooks/useDeleteData';
 
 export const getAllProductMoreSales = () => async (dispatch) => {
@@ -68,7 +71,7 @@ export const getProductSearch = (queryString=false) => async (dispatch) => {
     try {
         const response = await useGetData(`/api/product/search?${queryString}`)
         dispatch({
-            type: GET_ALL_PRODUCT,
+            type: GET_ALL_PRODUCT_SEARCH,
             payload: response,
         })
     } catch (error) {
@@ -155,6 +158,7 @@ export const deleteProduct = (id) => async (dispatch) => {
             type: PRODUCT_DELETE,
             payload: response,
         })
+        
     } catch (error) {
         dispatch({
             type: GET_ERROR,

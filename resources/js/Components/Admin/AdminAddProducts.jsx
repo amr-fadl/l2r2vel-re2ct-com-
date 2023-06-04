@@ -112,6 +112,7 @@ const AdminAddProducts = () => {
                     )}
 
                     <select
+                        multiple={false}
                         value={cat}
                         onChange={(e) => {
                             onChangeCat(e)
@@ -122,7 +123,7 @@ const AdminAddProducts = () => {
                         <option value="">التصنيف</option>
                         {
                             category.data && category.data.length > 0 ?
-                                category.data.filter(cat => cat.parent_cat_id == null).map(item => <option key={item.id} value={item.id}>{item.name}</option>)
+                                category.data.filter(cat => cat.parent == null).map(item => <option key={item.id} value={item.id}>{item.name}</option>)
                             : <option>لا يوجد تصنيفات</option>
                         }
                     </select>
@@ -139,9 +140,9 @@ const AdminAddProducts = () => {
                         displayValue="name"
                         style={{ color: "red" }}
                     />}
-                    {/* {errors.subCat && (
+                    {errors.subCat && (
                         <p className="text-danger mb-0">{errors.subCat}</p>
-                    )} */}
+                    )}
 
                     <select
                         value={brandId}

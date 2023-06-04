@@ -42,7 +42,6 @@ function adminEditProductHook() {
     const category = useSelector(state => state.allCategory.category) // get category from redux
     const brand = useSelector(state => state.allBrand.brand) // get brand from redux
 
-
     // select category
     const onChangeCat = (e) => {
         setCat(e.target.value) // set category
@@ -52,7 +51,6 @@ function adminEditProductHook() {
     // multi select
     const onSelect = (e) => {
         setSubCat(e)
-        console.log(e);
     }
     const onRemove = (e) => {
         setSubCat(e)
@@ -70,42 +68,44 @@ function adminEditProductHook() {
     }
 
     useEffect(() => {
+        setImages(item?.data?.images)
+        console.log(images);
 
-        const fetchData = async () => {
-          if (item && item.data) {
-            setName(item.data.name);
-            setDesc(item.data.desc);
-            setPrice(item.data.price);
-            setDiscount(item.data.discount);
-            setQty(item.data.qty);
-            setCat(item.data.category);
-            setBrandId(item.data.brand);
-            item.data.colors !== 'null' && setColors(JSON.parse(item.data.colors));
-            item.data.images !== 'null' && setImages(await loadImages(item.data.images));
-          }
-        };
+        //     const fetchData = async () => {
+    //       if (item && item.data) {
+    //         setName(item.data.name);
+    //         setDesc(item.data.desc);
+    //         setPrice(item.data.price);
+    //         setDiscount(item.data.discount);
+    //         setQty(item.data.qty);
+    //         setCat(item.data.category);
+    //         setBrandId(item.data.brand);
+    //         item.data.colors !== 'null' && setColors(JSON.parse(item.data.colors));
+    //         item.data.images !== 'null' && setImages(await loadImages(item.data.images));
+    //       }
+    //     };
 
-        const loadImages = async (imageNames) => {
-          const fileNames = JSON.parse(imageNames);
-          const files = await Promise.all(fileNames.map(async (name) => {
-            const response = await fetch(`../../images/product/${name}`);
-            const blob = await response.blob();
-            return new File([blob], name);
-          }));
-          return files;
-        };
+    //     const loadImages = async (imageNames) => {
+    //       const fileNames = JSON.parse(imageNames);
+    //       const files = await Promise.all(fileNames.map(async (name) => {
+    //         const response = await fetch(`../../images/product/${name}`);
+    //         const blob = await response.blob();
+    //         return new File([blob], name);
+    //       }));
+    //       return files;
+    //     };
 
-        fetchData();
-      }, [item]);
+    //     fetchData();
+    }, [item]);
 
     // category
+
     useEffect(()=>{
         setSubCatOption(category?.data?.filter(cate => cate.parent_cat_id == cat))
         setSelectedValues(item?.data?.categorys)
         setSubCat(item?.data?.categorys)
     },[category,cat])
 
-    // console.log(images);
 
     // to save data
     const handelSubmit = async (event) => {
@@ -122,7 +122,6 @@ function adminEditProductHook() {
         formData.append('brand',brandId)
 
         images.forEach(e => {
-            console.log(e);
             formData.append(`images[]`, e);
         });
 
